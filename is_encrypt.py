@@ -6,8 +6,8 @@ import re
 
 
 
-def init_scramble():
-    scrambled_alphs = []
+def init_scramble(): #Returns a list of 10 randomly generated alphabets
+    scrambled_alphs = [] # WARNING : Scrambles all previous data
     for i in range(10):
         characters = list("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890)(*&^%$#@!~`-=_+][{}\\|:;/.,<>?")
         alph = []
@@ -19,25 +19,12 @@ def init_scramble():
     pickle.dump(scrambled_alphs, open('alphs.p', 'wb'))
 
 
-    
-
-
-def ebets(alph_num):
+def ebets(alph_num): #Used in key in pull alphabet
     alphs = pickle.load(open('alphs.p', 'rb'))
     return alphs[alph_num]
 
-def scramble_encryption(a):
-    return_alph = []
-    for i in range(10):
-        alph = list(a)
-        for i in range(len(alph)):
-            char = random.choice(alph)
-            return_alph.append(char)
-            alph.remove(char)
-    return ''.join(return_alph)
- 
 
-def e_1(key, inp):
+def e_1(key, inp): # Syntax : e_1('111', 'encrypt me') <-- key has to be in string format
     key = list(map(int, str(key)))
     inp = re.sub(' ', '_', inp)
     bird_word = []
